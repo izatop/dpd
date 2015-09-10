@@ -1,0 +1,32 @@
+{
+  "name": "dpd",
+  "version": "0.0.1",
+  "description": "A DPD API Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izatop/dpd.git"
+  },
+  "keywords": [
+    "dpd",
+    "api"
+  ],
+  "author": "izatop@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/izatop/dpd/issues"
+  },
+  "homepage": "https://github.com/izatop/dpd#readme",
+  "dependencies": {
+    "easysoap": "^0.7.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.3.5"
+  }
+}
