@@ -1,7 +1,7 @@
-dpd
-=======
+DPD
+===
 
-This is a promise-based API library that provides access to DPD Web Services for NodeJS.
+This is a library that provides access to DPD Web Services for NodeJS.
 
 ## Install
 
