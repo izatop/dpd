@@ -1,7 +1,7 @@
 {
   "name": "dpd",
-  "version": "0.0.1",
-  "description": "A DPD API Library",
+  "version": "0.0.2",
+  "description": "A DPD API Library for nodejs",
   "main": "index.js",
   "scripts": {
     "test": "exit 0"

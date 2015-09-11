@@ -1,7 +1,7 @@
 emspost
 =======
 
-This is a promise-based API library that provides access to DPD Web Services.
+This is a promise-based API library that provides access to DPD Web Services for NodeJS.
 
 ## Install
 
@@ -86,19 +86,29 @@ client.calculator2.getServiceCost2(parameters).then(function (result:Calculator2
 });
 ```
 
+### Order v2
+
+ * createOrder
+ * getOrderStatus
+ * createAddress
+ * updateAddress
+ * getInvoiceFile
+ * getRegisterFile
+ * addParcels
+ * removeParcels
+
+
 ### Tracing
 
- * Confirm
- * GetStatesByClient
- * GetStatesByClientOrder
- * GetStatesByClientParcel
- * GetStatesByDPDOrder
+ * confirm
+ * getStatesByClient
+ * getStatesByClientOrder
+ * getStatesByClientParcel
+ * getStatesByDPDOrder
 
 ### Tracing v2
 
- * Confirm
- * GetStatesByClient
- * GetStatesByClientOrder
- * GetStatesByClientParcel
- * GetStatesByDPDOrder
+ * getStatesByClientOrder
+ * getStatesByClientParcel
+ * getStatesByDPDOrder
 
