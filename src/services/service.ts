@@ -72,8 +72,6 @@ export class Service {
                 options.params = envelope;
             }
 
-            console.log('request:', options);
-
             this.client.call(options).done(
                 (result) => Service.handle(result, resolve, reject),
                 (failure) => reject(failure)

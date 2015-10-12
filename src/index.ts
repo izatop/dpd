@@ -28,8 +28,6 @@ class DPD implements IContext {
             this.hostname = 'wstest.dpd.ru';
         }
 
-        console.log('hostname:', this.hostname);
-
         this.credentials = new Credentials(client, key);
         this.geography = new V1.Geography(this);
         this.geography2 = new V2.Geography2(this);
