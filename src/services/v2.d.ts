@@ -22,17 +22,33 @@ declare module V2Types {
     }
 
     interface Address {
-        countryCode:string;
-        regionCode:string;
-        regionName:string;
-        cityCode:string;
-        cityName:string;
+        code:string;
+    }
+
+    interface Address {
+        name:string;
+        terminalCode?:string;
+        addressString?:string;
+        countryName:string;
+        index?:number;
+        region?:string;
+        city:string;
         street:string;
         streetAbbr:string;
-        houseNo:string;
-        building:string;
-        structure:string;
-        ownership:string;
+        house?:string;
+        houseKorpus?:string;
+        str?:string;
+        vlad?:string;
+        extraInfo?:string;
+        office?:string;
+        flat?:string;
+        workTimeFrom?:string;
+        workTimeTo?:string;
+        dinnerTimeFrom?:string;
+        dinnerTimeTo?:string;
+        contactFio:string;
+        contactPhone:string;
+        contactEmail?:string;
     }
 
     interface Schedule {
@@ -283,7 +299,7 @@ declare module Order2Port {
             extraService?:OrderExtraService;
             parcel?:OrderParcel;
             unitLoad?:OrderUnitLoad;
-        }
+        }[]
     }
 
     interface CreateOrderResponse extends OrderResponse {}

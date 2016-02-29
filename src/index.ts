@@ -1,5 +1,9 @@
+'use strict';
+
 import * as V1 from './services/v1';
 import * as V2 from './services/v2';
+
+declare var require;
 
 class Credentials implements ICredentials {
     public client:number;
@@ -38,4 +42,4 @@ class DPD implements IContext {
     }
 }
 
-export default DPD;
+export = DPD;

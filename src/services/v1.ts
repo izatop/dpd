@@ -1,5 +1,7 @@
 /// <reference path="./v1.d.ts" />
 
+'use strict';
+
 import {Service} from './service';
 
 /**

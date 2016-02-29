@@ -24,21 +24,15 @@ declare module "easysoap" {
         params?:any;
     }
 
-    interface IPromiseable {
-        done(success:IInvokableResultHandler, failure:IInvokableFailureHandler);
-    }
-
-    interface IInvokableResultHandler {
-        (result:any):void;
-    }
-
-    interface IInvokableFailureHandler {
-        (error:Error):void;
-    }
-
-    export class Client {
+    export interface SOAPClient {
         constructor(parameters:IClientParameters, options?:IClientOptions);
 
-        call(parameter:IMethodOptions):IPromiseable;
+        call(parameter:IMethodOptions):Promise<any>;
     }
+
+    interface createClient {
+        (parameters:IClientParameters, options?:IClientOptions):SOAPClient;
+    }
+
+    export function createClient(parameters:IClientParameters, options?:IClientOptions):SOAPClient;
 }

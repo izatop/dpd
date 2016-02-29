@@ -1,7 +1,7 @@
 DPD
 ===
 
-This is a library that provides access to DPD Web Services for NodeJS.
+This is a client library for DPD Web Services.
 
 ## Install
 

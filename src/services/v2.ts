@@ -1,5 +1,7 @@
 /// <reference path="./v2.d.ts" />
 
+'use strict';
+
 import {Service} from './service';
 
 export class Geography2 extends Service {

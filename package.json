@@ -1,8 +1,8 @@
 {
   "name": "dpd",
-  "version": "0.0.5",
-  "description": "DPD API for NodeJS",
-  "main": "index.js",
+  "version": "0.1.1-beta",
+  "description": "DPD API for Node.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "exit 0"
   },
@@ -21,12 +21,6 @@
   },
   "homepage": "https://github.com/izatop/dpd#readme",
   "dependencies": {
-    "easysoap": "^0.7.0"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.1",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-watch": "^4.3.5"
+    "easysoap": "git@github.com:izatop/easysoap.git"
   }
 }

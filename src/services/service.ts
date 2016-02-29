@@ -2,17 +2,15 @@
 /// <reference path="../index.d.ts" />
 /// <reference path="./easysoap.d.ts" />
 
-import * as SOAPClient from 'easysoap';
+'use strict';
 
-// fix bug for underscore: https://github.com/jashkenas/underscore/issues/2293
-declare var require;
-require('../underscore-fix.js');
+import {createClient, SOAPClient} from 'easysoap';
 
 export class Service {
     namespace:string;
 
     context:IContext;
-    client:SOAPClient.Client;
+    client:SOAPClient;
 
     constructor(context:IContext) {
         this.context = context;
@@ -23,7 +21,7 @@ export class Service {
      */
     createClient():void {
         if (!this.client) {
-            this.client = new SOAPClient.Client(
+            this.client = createClient(
                 {
                     host: this.context.hostname,
                     path: `/services/${this.namespace}`,
@@ -72,10 +70,9 @@ export class Service {
                 options.params = envelope;
             }
 
-            this.client.call(options).done(
-                (result) => Service.handle(result, resolve, reject),
-                (failure) => reject(failure)
-            );
+            this.client.call(options)
+                .then(result => Service.handle(result, resolve, reject))
+                .catch(failure => reject(failure));
         });
     }
 
@@ -88,6 +85,7 @@ export class Service {
      */
     private static handle(body:{data:any, response:any, header:any}, resolve, reject) {
         let data = body.data;
+        console.log(body);
 
         if (data.hasOwnProperty('Fault')) {
             if (data.Fault.length > 0) {
