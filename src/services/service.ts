@@ -1,37 +1,20 @@
 /// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../index.d.ts" />
-/// <reference path="./easysoap.d.ts" />
+/// <reference path="./soap.d.ts" />
 
 'use strict';
 
-import {createClient, SOAPClient} from 'easysoap';
+import * as soap from 'soap';
+import * as util from 'util';
 
 export class Service {
     namespace:string;
 
     context:IContext;
-    client:SOAPClient;
+    client:any;
 
     constructor(context:IContext) {
         this.context = context;
-    }
-
-    /**
-     * Deferred creation.
-     */
-    createClient():void {
-        if (!this.client) {
-            this.client = createClient(
-                {
-                    host: this.context.hostname,
-                    path: `/services/${this.namespace}`,
-                    wsdl: `/services/${this.namespace}?wsdl`
-                },
-                {
-                    secure: true
-                }
-            );
-        }
     }
 
     /**
@@ -43,7 +26,6 @@ export class Service {
      * @returns {Promise<T>}
      */
     call<T>(method:string, parameters:any = null, ns:string = null):Promise<T> {
-        this.createClient();
         return new Promise((resolve, reject) => {
             if (parameters === null) {
                 parameters = {};
@@ -70,33 +52,47 @@ export class Service {
                 options.params = envelope;
             }
 
-            this.client.call(options)
-                .then(result => Service.handle(result, resolve, reject))
-                .catch(failure => reject(failure));
+            if (this.client) {
+                this.send(options, resolve, reject);
+            } else {
+                let WSDLOptions = {
+                    ignoredNamespaces: {
+                        override: true,
+                        namespaces: [ 'targetNamespace', 'typedNamespace' ]
+                    }
+                };
+
+                soap.createClient(`http://${this.context.hostname}/services/${this.namespace}?wsdl`, WSDLOptions, (error, client) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        this.client = client;
+                        this.send(options, resolve, reject);
+                    }
+                });
+            }
         });
     }
 
-    /**
-     * Handle a WebService response.
-     *
-     * @param body
-     * @param resolve
-     * @param reject
-     */
-    private static handle(body:{data:any, response:any, header:any}, resolve, reject) {
-        let data = body.data;
-        console.log(body);
-
-        if (data.hasOwnProperty('Fault')) {
-            if (data.Fault.length > 0) {
-                reject(new Error(data.Fault[0]._value.faultstring));
-            } else {
-                reject(new Error('Something went wrong'));
-            }
-        } else {
-            resolve(data.hasOwnProperty('return') ? data.return : null);
+    private fixParameters(value:any) {
+        if (util.isArray(value)) {
+            return value.map(x => this.fixParameters(x));
+        } else if (typeof value == 'object') {
+            let converted = {};
+            Object.keys(value).forEach(x => converted[':' + x] = this.fixParameters(value[x]));
+            return converted;
         }
+
+        return value;
+    }
+
+    private send(options, resolve, reject) {
+        this.client[options.method](this.fixParameters(options.params), (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result.return);
+            }
+        });
     }
 }
-
-
