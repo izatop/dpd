@@ -5,7 +5,10 @@
 import {Service} from './service';
 
 export class Geography2 extends Service {
-    namespace:string = 'geography2';
+    constructor(context) {
+        super(context);
+        this.namespace = 'geography2';
+    }
 
     /**
      * @param parameters {Geography2Port.getTerminalsSelfDelivery2Request}
@@ -33,7 +36,10 @@ export class Geography2 extends Service {
 }
 
 export class Calculator2 extends Service {
-    namespace:string = 'calculator2';
+    constructor(context) {
+        super(context);
+        this.namespace = 'calculator2';
+    }
 
     /**
      * @param parameters {Calculator2Port.getServiceCost2Request}
@@ -53,7 +59,10 @@ export class Calculator2 extends Service {
 }
 
 export class Order2 extends Service {
-    namespace:string = 'order2';
+    constructor(context) {
+        super(context);
+        this.namespace = 'order2';
+    }
 
     /**
      * @param parameters {Order2Port.CreateOrderRequest}
@@ -121,7 +130,10 @@ export class Order2 extends Service {
 }
 
 export class Tracing2 extends Service {
-    namespace:string = 'tracing';
+    constructor(context) {
+        super(context);
+        this.namespace = 'tracing';
+    }
 
     /**
      * @param parameters {Tracing2Port.GetStatesByClientOrderRequest}

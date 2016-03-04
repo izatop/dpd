@@ -8,13 +8,16 @@ import {Service} from './service';
  * Geography Service
  */
 export class Geography extends Service {
-    namespace:string = 'geography';
+    constructor(context) {
+        super(context);
+        this.namespace = 'geography';
+    }
 
     /**
      * @param parameters
      * @returns {Promise<getCitiesCashPayResponse>}
      */
-    getCitiesCashPay(parameters:GeographyPort.getCitiesCashPayRequest = {}):Promise<GeographyPort.getCitiesCashPayResponse> {
+    getCitiesCashPay(parameters:GeographyPort.getCitiesCashPayRequest):Promise<GeographyPort.getCitiesCashPayResponse> {
         return this.call('getCitiesCashPay', parameters);
     }
 
@@ -36,7 +39,10 @@ export class Geography extends Service {
 }
 
 export class Tracing extends Service {
-    namespace:string = 'tracing';
+    constructor(context) {
+        super(context);
+        this.namespace = 'tracing';
+    }
 
     /**
      * @param parameters {TracingPort.ConfirmRequest}

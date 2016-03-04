@@ -6,6 +6,7 @@
 
 import * as soap from 'soap';
 import * as util from 'util';
+import {createXMLFromObject} from '../simplexml';
 
 export class Service {
     namespace:string;
@@ -25,9 +26,9 @@ export class Service {
      * @param ns            Method's envelope namespace which includes parameters.
      * @returns {Promise<T>}
      */
-    call<T>(method:string, parameters:any = null, ns:string = null):Promise<T> {
+    call<T>(method:string, parameters?:any, ns?:string):Promise<T> {
         return new Promise((resolve, reject) => {
-            if (parameters === null) {
+            if (!parameters) {
                 parameters = {};
             }
 
@@ -79,16 +80,17 @@ export class Service {
             return value.map(x => this.fixParameters(x));
         } else if (typeof value == 'object') {
             let converted = {};
-            Object.keys(value).forEach(x => converted[':' + x] = this.fixParameters(value[x]));
+            Object.keys(value).forEach(x => converted[x.indexOf('$') === 0 ? x : ':' + x] = this.fixParameters(value[x]));
             return converted;
         }
 
         return value;
     }
-
+    
     private send(options, resolve, reject) {
-        this.client[options.method](this.fixParameters(options.params), (error, result) => {
+        this.client[options.method]({$xml: createXMLFromObject(options.params)}, (error, result) => {
             if (error) {
+                error.requestBody = this.client.lastRequest;
                 reject(error);
             } else {
                 resolve(result.return);
