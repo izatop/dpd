@@ -84,3 +84,14 @@ export class Tracing extends Service {
         return this.call('getStatesByDPDOrder', parameters);
     }
 }
+
+export class Label extends Service {
+    constructor(context) {
+        super(context);
+        this.namespace = 'label-print';
+    }
+
+    createLabelFile(parameters:LabelPort.CreateLabelFileRequest):Promise<LabelPort.CreateLabelFileResponse> {
+        return this.call('createLabelFile', parameters, 'getLabelFile');
+    }
+}

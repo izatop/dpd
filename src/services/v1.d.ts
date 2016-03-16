@@ -94,6 +94,30 @@ declare module GeographyPort {
     }
 }
 
+declare module LabelPort {
+    interface CreateLabelOrderDescriptionRequest {
+        orderNum:string;
+        parcelsNumber:number;
+    }
+
+    interface CreateLabelOrderDescriptionResponse {
+        orderNum:string;
+        status:string;
+        errorMessage?:string;
+    }
+
+    interface CreateLabelFileRequest {
+        fileFormat:"PDF"|"FP3";
+        pageSize:"A5"|"A6";
+        order:Array<CreateLabelOrderDescriptionRequest>;
+    }
+
+    interface CreateLabelFileResponse {
+        file:any;
+        order:Array<CreateLabelOrderDescriptionResponse>;
+    }
+}
+
 declare module TracingPort {
 
     /**

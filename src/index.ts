@@ -25,8 +25,9 @@ class DPD implements IContext {
     order2:V2.Order2;
     tracing:V1.Tracing;
     tracing2:V2.Tracing2;
+    label:V1.Label;
 
-    constructor(client:number, key:string, options:IServiceOptions = {test: false}) {
+    constructor(client:number, key:string, options:IServiceOptions) {
         this.hostname = 'ws.dpd.ru';
         if (options.test) {
             this.hostname = 'wstest.dpd.ru';
@@ -39,6 +40,7 @@ class DPD implements IContext {
         this.order2 = new V2.Order2(this);
         this.tracing = new V1.Tracing(this);
         this.tracing2 = new V2.Tracing2(this);
+        this.label = new V1.Label(this);
     }
 }
 
