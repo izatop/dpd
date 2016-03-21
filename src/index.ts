@@ -3,8 +3,6 @@
 import * as V1 from './services/v1';
 import * as V2 from './services/v2';
 
-declare var require;
-
 class Credentials implements ICredentials {
     public client:number;
     public key:string;

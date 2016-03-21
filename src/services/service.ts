@@ -1,12 +1,13 @@
 /// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../index.d.ts" />
 /// <reference path="./soap.d.ts" />
+/// <reference path="../../typings/o2xml/index.d.ts" />
 
 'use strict';
 
 import * as soap from 'soap';
 import * as util from 'util';
-import {createXMLFromObject} from '../simplexml';
+import {transform} from 'o2xml';
 
 export class Service {
     namespace:string;
@@ -88,7 +89,7 @@ export class Service {
     }
     
     private send(options, resolve, reject) {
-        this.client[options.method]({$xml: createXMLFromObject(options.params)}, (error, result) => {
+        this.client[options.method]({$xml: transform(options.params)}, (error, result) => {
             if (error) {
                 error.requestBody = this.client.lastRequest;
                 reject(error);
