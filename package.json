@@ -1,6 +1,6 @@
 {
   "name": "dpd",
-  "version": "0.2.12-beta",
+  "version": "0.2.13-beta",
   "description": "DPD API for Node.js",
   "main": "build/index.js",
   "scripts": {

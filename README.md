@@ -35,6 +35,7 @@ You can see description of any supported services in services/v1.d.ts and servic
 
 ### Geography
 
+ * getCities
  * getCitiesCashPay
  * getTerminalsSelfDelivery2
  * getParcelShops
@@ -44,6 +45,32 @@ client.geography.getCitiesCashPay().then(function (result) {
     ...
 });
 ```
+
+#### getCities
+
+Gets DPD cities as a Readable stream.
+
+```js
+api.geography.getCities()
+    .on('data', city => console.log(city));
+```
+
+output:
+
+```
+...
+{ country: 'Беларусь',
+  region: 'Минская',
+  district: null,
+  id: '3444661908',
+  code: '06258808111',
+  type: 'п',
+  locality: 'Черноградь',
+  index_min: '223237',
+  index_max: '223237' }
+...
+```
+
 
 ### Geography v2
 

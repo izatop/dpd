@@ -3,6 +3,8 @@
 'use strict';
 
 import {Service} from './service';
+import {createDataStream, DataStreamTransform} from "./datastore";
+import {resolve} from 'path';
 
 /**
  * Geography Service
@@ -11,6 +13,13 @@ export class Geography extends Service {
     constructor(context) {
         super(context);
         this.namespace = 'geography';
+    }
+
+    getCities():DataStreamTransform {
+        return createDataStream(
+            resolve(__dirname, '../../resources/cities.csv'),
+            ['country', 'region', 'district', 'id', 'code', 'type', 'locality', 'index_min', 'index_max']
+        );
     }
 
     /**
