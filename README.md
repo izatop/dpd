@@ -1,37 +1,52 @@
 DPD
 ===
 
-This is a client library for DPD Web Services.
+DPD Web Services client library.
 
 ## Install
 
 ```
-npm install dpd --save
+npm i -S dpd
 ```
+
+### Requirements
+Node.js 4+
 
 ## Usage
 
 ```js
-var DPD = require('dpd');
-var client = new DPD(1234567890, 'client secret key', {test: true});
-client.geography.getCitiesCashPay().then(function (cities) {
+const {DPD} = require('dpd');
+const services = new DPD({
+    hostname: 'ws.dpd.com', 
+    clientId: 1234567890, 
+    secretKey: 'client secret key',
+    resources: {
+        cities: './resources/cities.csv'
+    }
+});
+
+services.geography.getCitiesCashPay().then(function (cities) {
     console.log(cities);
 });
 ```
 
-## Services
+### Options
 
-Example:
+ * hostname     - This is a DPD Web Service hostname 
+ * clientId     - Your client identifier  
+ * secretKey    - Your secret key
+ * resources
+    * cities    - A path to CSV database for getCities method (default resources/cities.csv)
+
+### Request a service
 
 ```js
-client.serviceName.methodName(parameters).then(function (result) {
-    ...
-});
+const result = services.serviceName.serviceMethodName(parameters);
 ```
 
-You can see description of any supported services in services/v1.d.ts and services/v2.d.ts.
+## Services
 
-**Notice: following interfaces described in TypeScript lang.**
+There are list of DPD Web Services.
 
 ### Geography
 
@@ -40,10 +55,12 @@ You can see description of any supported services in services/v1.d.ts and servic
  * getTerminalsSelfDelivery2
  * getParcelShops
 
+
+#### Example
+
 ```js
-client.geography.getCitiesCashPay().then(function (result) {
-    ...
-});
+services.geography.getCitiesCashPay({})
+    .then(result => console.log(result));
 ```
 
 #### getCities
@@ -51,7 +68,7 @@ client.geography.getCitiesCashPay().then(function (result) {
 Gets DPD cities as a Readable stream.
 
 ```js
-api.geography.getCities()
+services.geography.getCities()
     .on('data', city => console.log(city));
 ```
 
@@ -70,7 +87,6 @@ output:
   index_max: '223237' }
 ...
 ```
-
 
 ### Geography v2
 
@@ -94,8 +110,7 @@ client.geography2.getParcelShops({countryCode: 'RU'}).then(function (result) {
 The following example written in TypeScript:
 
 ```ts
-/// <reference path="path-to-dpd/src/services/v2.d.ts" />
-var parameters:Calculator2Port.getServiceCostByParcels2Request = {
+const parameters:Calculator2Port.getServiceCostByParcels2Request = {
     pickup: {
         cityId: 1234
     },

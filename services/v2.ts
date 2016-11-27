@@ -1,8 +1,7 @@
-/// <reference path="./v2.d.ts" />
-
 'use strict';
 
 import {Service} from './service';
+import {Calculator2Port, Geography2Port, Order2Port, Tracing2Port, V2Types} from './Interfaces2';
 
 export class Geography2 extends Service {
     constructor(context) {
@@ -159,3 +158,5 @@ export class Tracing2 extends Service {
         return this.call('getStatesByDPDOrder', parameters);
     }
 }
+
+export {Calculator2Port, Geography2Port, Order2Port, Tracing2Port, V2Types} from './Interfaces2';

@@ -1,11 +1,8 @@
 {
   "name": "dpd",
-  "version": "0.2.15-beta",
+  "version": "0.3.0-beta",
   "description": "DPD API for Node.js",
-  "main": "build/index.js",
-  "scripts": {
-    "test": "exit 0"
-  },
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/izatop/dpd.git"
@@ -21,8 +18,13 @@
   },
   "homepage": "https://github.com/izatop/dpd#readme",
   "dependencies": {
+    "@types/node": "^6.0.51",
     "o2xml": "^0.1.4",
     "soap": "^0.13.0",
-    "source-map-support": "^0.4.0"
+    "typescript": "^2.0.8"
+  },
+  "devDependencies": {
+    "source-map-support": "^0.4.6",
+    "typescript": "^2.0.10"
   }
 }

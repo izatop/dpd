@@ -1,22 +1,22 @@
-declare module Types {
-    interface AuthorizationRequest {
+export namespace Types {
+    export interface AuthorizationRequest {
         auth: {
             clientNumber:number;
             clientKey:string;
         }
     }
 
-    interface GeoCoordinates {
+    export interface GeoCoordinates {
         geoX:number;
         geoY:number;
     }
 
-    interface WorkingTime {
+    export interface WorkingTime {
         weekDays:string;
         workTime:string;
     }
 
-    interface Limits {
+    export interface Limits {
         maxWeight:number;
         maxLength:number;
         maxWidth:number;
@@ -24,33 +24,31 @@ declare module Types {
     }
 }
 
-declare module GeographyPort {
-    interface getCitiesCashPayRequest {}
-    interface getCitiesCashPayResponse {
-        city: {
-            cityId:number;
-            countryCode:string;
-            countryName:string;
-            regionCode:string;
-            regionName:string;
-            cityCode:string;
-            cityName:string;
-            abbreviation:string;
-            indexMin:string;
-            indexMax:string;
-        }[];
-    }
+export namespace GeographyPort {
+    export interface getCitiesCashPayRequest {}
+    export type getCitiesCashPayResponse = Array<{
+        cityId:number;
+        countryCode:string;
+        countryName:string;
+        regionCode:string;
+        regionName:string;
+        cityCode:string;
+        cityName:string;
+        abbreviation:string;
+        indexMin:string;
+        indexMax:string;
+    }>;
 
-    interface getTerminalsSelfDelivery2Request {}
+    export interface getTerminalsSelfDelivery2Request {}
 
-    interface getTerminalsSelfDelivery2Response {
+    export type getTerminalsSelfDelivery2Response = Array<{
         terminal: {
             terminalCode:string;
             terminalName:string;
             terminalAddress:string;
             geoCoordinates:Types.GeoCoordinates;
             workingTime:Types.WorkingTime[];
-        }[];
+        };
 
         city: {
             cityId:number;
@@ -61,17 +59,17 @@ declare module GeographyPort {
             regionCode:string;
             regionName:string;
         }[];
+    }>;
+
+    export interface getParcelShopsRequest {
+        countryCode?:string;
+        regionCode?:string;
+        cityCode?:string;
+        cityName?:string;
+        serviceCode?:string;
     }
 
-    interface getParcelShopsRequest {
-        countryCode:string;
-        regionCode:string;
-        cityCode:string;
-        cityName:string;
-        serviceCode:string;
-    }
-
-    interface getParcelShopsResponse {
+    export interface getParcelShopsResponse {
         parcelShop: {
             code:string;
             parcelShopType:string;
@@ -94,41 +92,41 @@ declare module GeographyPort {
     }
 }
 
-declare module LabelPort {
-    interface CreateLabelOrderDescriptionRequest {
+export namespace LabelPort {
+    export interface CreateLabelOrderDescriptionRequest {
         orderNum:string;
         parcelsNumber:number;
     }
 
-    interface CreateLabelOrderDescriptionResponse {
+    export interface CreateLabelOrderDescriptionResponse {
         orderNum:string;
         status:string;
         errorMessage?:string;
     }
 
-    interface CreateLabelFileRequest {
+    export interface CreateLabelFileRequest {
         fileFormat:"PDF"|"FP3";
         pageSize:"A5"|"A6";
         order:Array<CreateLabelOrderDescriptionRequest>;
     }
 
-    interface CreateLabelFileResponse {
+    export interface CreateLabelFileResponse {
         file:any;
         order:Array<CreateLabelOrderDescriptionResponse>;
     }
 }
 
-declare module TracingPort {
+export namespace TracingPort {
 
     /**
      * Operation Confirm
      */
 
-    interface ConfirmRequest {
+    export interface ConfirmRequest {
         docId:number;
     }
 
-    interface ConfirmResponse {
+    export interface ConfirmResponse {
         docId:number;
     }
 
@@ -136,9 +134,9 @@ declare module TracingPort {
      * Operation GetStatesByClient
      */
 
-    interface GetStatesByClientRequest {}
+    export interface GetStatesByClientRequest {}
 
-    interface GetStatesByClientResponse {
+    export interface GetStatesByClientResponse {
         docId:number;
         docDate:string;
         clientNumber:number;
@@ -178,31 +176,31 @@ declare module TracingPort {
      * Operation GetStatesByClientOrder
      */
 
-    interface GetStatesByClientOrderRequest {
+    export interface GetStatesByClientOrderRequest {
         clientOrderNr:string;
         pickupDate?:string;
     }
 
-    interface GetStatesByClientOrderResponse extends GetStatesByClientResponse {}
+    export interface GetStatesByClientOrderResponse extends GetStatesByClientResponse {}
 
     /**
      * Operation GetStatesByClientParcel
      */
-
-    interface GetStatesByClientParcelRequest {
+    export interface GetStatesByClientParcelRequest {
         clientParcelNr:string;
         pickupDate?:string;
     }
-    interface GetStatesByClientParcelResponse extends GetStatesByClientResponse {}
+    
+    export interface GetStatesByClientParcelResponse extends GetStatesByClientResponse {}
 
     /**
      * Operation GetStatesByDPDOrder
      */
 
-    interface GetStatesByDPDOrderRequest {
+    export interface GetStatesByDPDOrderRequest {
         dpdOrderNr:string;
         pickupYear?:number;
     }
 
-    interface GetStatesByDPDOrderResponse extends GetStatesByClientResponse {}
+    export interface GetStatesByDPDOrderResponse extends GetStatesByClientResponse {}
 }

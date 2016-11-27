@@ -1,10 +1,20 @@
-/// <reference path="./v1.d.ts" />
-
 'use strict';
 
 import {Service} from './service';
 import {createDataStream, DataStreamTransform} from "./datastore";
-import {resolve} from 'path';
+import {LabelPort, TracingPort, Types, GeographyPort} from './Interfaces1';
+
+export interface CityType {
+    id: number;
+    code: string;
+    type: string;
+    locality: string;
+    country: string;
+    region: string;
+    district: string;
+    index_min: number;
+    index_max: number;
+}
 
 /**
  * Geography Service
@@ -15,9 +25,9 @@ export class Geography extends Service {
         this.namespace = 'geography';
     }
 
-    getCities():DataStreamTransform {
+    getCities():DataStreamTransform<CityType> {
         return createDataStream(
-            resolve(__dirname, '../../resources/cities.csv'),
+            this.context.resources.cities,
             ['country', 'region', 'district', 'id', 'code', 'type', 'locality', 'index_min', 'index_max']
         );
     }
@@ -104,3 +114,5 @@ export class Label extends Service {
         return this.call('createLabelFile', parameters, 'getLabelFile');
     }
 }
+
+export {LabelPort, TracingPort, Types, GeographyPort} from './Interfaces1';

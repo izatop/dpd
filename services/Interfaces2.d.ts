@@ -1,19 +1,17 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
-declare module V2Types {
-    interface AuthorizationRequest {
+export namespace V2Types {
+    export interface AuthorizationRequest {
         auth:{
             clientNumber:number;
             clientKey:string;
         }
     }
 
-    interface GeoCoordinates {
+    export interface GeoCoordinates {
         latitude:number;
         longitude:number;
     }
 
-    interface Limits {
+    export interface Limits {
         maxShipmentWeight:number;
         maxWeight:number;
         maxLength:number;
@@ -21,11 +19,11 @@ declare module V2Types {
         maxHeight:number;
     }
 
-    interface Address {
+    export interface Address {
         code:string;
     }
 
-    interface Address {
+    export interface Address {
         name:string;
         terminalCode?:string;
         addressString?:string;
@@ -51,29 +49,29 @@ declare module V2Types {
         contactEmail?:string;
     }
 
-    interface Schedule {
+    export interface Schedule {
         operation:string;
         timetable:Timetable;
     }
 
-    interface Timetable {
+    export interface Timetable {
         weekDays:string;
         workTime:string;
     }
 
-    interface Service {
+    export interface Service {
         serviceCode:string;
         days:number;
     }
 
-    interface Location {
+    export interface Location {
         cityId?:number;
         cityName?:string;
         regionCode?:string;
         countryCode?:string;
     }
 
-    interface Parcel {
+    export interface Parcel {
         weight:number;
         length:number;
         width:number;
@@ -82,20 +80,20 @@ declare module V2Types {
     }
 }
 
-declare module Geography2Port {
+export namespace Geography2Port {
 
     /**
      * Operation getParcelShops
      */
 
-    interface getParcelShopsRequest {
+    export interface getParcelShopsRequest {
         countryCode?:string;
         regionCode?:string;
         cityCode?:string;
         cityName?:string;
     }
 
-    interface getParcelShopsResponse {
+    export interface getParcelShopsResponse {
         parcelShop:{
             code:string;
             parcelShopType:string;
@@ -111,8 +109,8 @@ declare module Geography2Port {
      * Operation getTerminalsSelfDelivery2
      */
 
-    interface getTerminalsSelfDelivery2Request {}
-    interface getTerminalsSelfDelivery2Response {
+    export interface getTerminalsSelfDelivery2Request {}
+    export interface getTerminalsSelfDelivery2Response {
         terminal:{
             terminalCode:string;
             terminalName:string;
@@ -126,12 +124,12 @@ declare module Geography2Port {
      * Operation getStoragePeriod
      */
 
-    interface getStoragePeriodRequest {
+    export interface getStoragePeriodRequest {
         terminalCode:string;
         serviceCode?:string;
     }
 
-    interface getStoragePeriodResponse {
+    export interface getStoragePeriodResponse {
         terminal:{
             terminalCode:string;
             services:V2Types.Service[];
@@ -139,12 +137,12 @@ declare module Geography2Port {
     }
 }
 
-declare module Calculator2Port {
+export namespace Calculator2Port {
     /**
      * Common response for
      */
 
-    interface CalculatorResponse {
+    export interface CalculatorResponse {
         serviceCode:string;
         serviceName:string;
         cost:number;
@@ -155,7 +153,7 @@ declare module Calculator2Port {
      * Operation getServiceCost2
      */
 
-    interface getServiceCost2Request {
+    export interface getServiceCost2Request {
         pickup?:V2Types.Location;
         delivery?:V2Types.Location;
         selfPickup:boolean;
@@ -169,13 +167,13 @@ declare module Calculator2Port {
         declaredValue?:number;
     }
 
-    interface getServiceCost2Response extends CalculatorResponse {}
+    export interface getServiceCost2Response extends CalculatorResponse {}
 
     /**
      * Operation getServiceCostByParcels2
      */
 
-    interface getServiceCostByParcels2Request {
+    export interface getServiceCostByParcels2Request {
         pickup:V2Types.Location;
         delivery:V2Types.Location;
         selfPickup:boolean;
@@ -188,26 +186,26 @@ declare module Calculator2Port {
         parcel?:V2Types.Parcel[];
     }
 
-    interface getServiceCostByParcels2Response extends CalculatorResponse {}
+    export interface getServiceCostByParcels2Response extends CalculatorResponse {}
 }
 
-declare module Order2Port {
-    interface OrderParameter {
+export namespace Order2Port {
+    export interface OrderParameter {
         name:string;
         value:string;
     }
 
-    interface OrderExtraService {
+    export interface OrderExtraService {
         esCode:string;
         param?:OrderParameter;
     }
 
-    interface OrderDataInternational {
+    export interface OrderDataInternational {
         currency?:string;
         currencyDeclaredValue?:number;
     }
 
-    interface Address {
+    export interface Address {
         code:string;
         name:string;
         terminalCode:string;
@@ -235,7 +233,7 @@ declare module Order2Port {
         instructions:string;
     }
 
-    interface OrderUnitLoad {
+    export interface OrderUnitLoad {
         article:string;
         descript:string;
         declared_value?:number;
@@ -243,7 +241,7 @@ declare module Order2Port {
         npp_amount?:number;
     }
 
-    interface OrderParcel {
+    export interface OrderParcel {
         number:string;
         weight?:number;
         length?:number;
@@ -251,20 +249,20 @@ declare module Order2Port {
         height?:number;
     }
 
-    interface OrderResponse {
+    export interface OrderResponse {
         orderNumberInternal:string;
         orderNum:string;
         status:string;
         errorMessage?:string;
     }
 
-    interface AddressResponse {
+    export interface AddressResponse {
         code:string;
         status:string;
         errorMessage?:string;
     }
 
-    interface OrderParcelStatus {
+    export interface OrderParcelStatus {
         number:string;
         status:string;
     }
@@ -273,7 +271,7 @@ declare module Order2Port {
      * Operation createOrder
      */
 
-    interface CreateOrderRequest {
+    export interface CreateOrderRequest {
         header:{
             datePickup:string;
             payer?:number;
@@ -302,49 +300,49 @@ declare module Order2Port {
         }[]
     }
 
-    interface CreateOrderResponse extends OrderResponse {}
+    export interface CreateOrderResponse extends OrderResponse {}
 
     /**
      * Operation getOrderStatus
      */
 
-    interface GetOrderStatusRequest {
+    export interface GetOrderStatusRequest {
         orderNumberInternal:string;
         datePickup:string;
     }
 
-    interface GetOrderStatusResponse extends OrderResponse {}
+    export interface GetOrderStatusResponse extends OrderResponse {}
 
     /**
      * Operation createAddress
      */
 
-    interface CreateAddressRequest {
+    export interface CreateAddressRequest {
         clientAddress:Address;
     }
 
-    interface CreateAddressResponse extends AddressResponse {}
+    export interface CreateAddressResponse extends AddressResponse {}
 
     /**
      * Operation updateAddress
      */
-    interface UpdateAddressRequest {
+    export interface UpdateAddressRequest {
         clientAddress:Address;
     }
 
-    interface UpdateAddressResponse extends AddressResponse {}
+    export interface UpdateAddressResponse extends AddressResponse {}
 
     /**
      * Operation getInvoiceFile
      */
 
-    interface GetInvoiceFileRequest {
+    export interface GetInvoiceFileRequest {
         orderNum:string;
         parcelCount?:number;
         cargoValue?:number;
     }
 
-    interface GetInvoiceFileResponse {
+    export interface GetInvoiceFileResponse {
         file:string;
     }
 
@@ -352,11 +350,11 @@ declare module Order2Port {
      * Operation getRegisterFile
      */
 
-    interface GetRegisterFileRequest {
+    export interface GetRegisterFileRequest {
         datePickup:Buffer;
     }
 
-    interface GetRegisterFileResponse {
+    export interface GetRegisterFileResponse {
         file:Buffer;
         code:string;
         message?:string;
@@ -366,7 +364,7 @@ declare module Order2Port {
      * Operation addParcels
      */
 
-    interface AddParcelsRequest {
+    export interface AddParcelsRequest {
         orderNum:string;
         orderNumberInternal?:string;
         cargoNumPack:number;
@@ -377,7 +375,7 @@ declare module Order2Port {
         parcel:OrderParcel;
     }
 
-    interface AddParcelsResponse {
+    export interface AddParcelsResponse {
         orderNum?:string;
         status:string;
         parcelStatus:OrderParcelStatus;
@@ -387,13 +385,13 @@ declare module Order2Port {
      * Operation removeParcels
      */
 
-    interface RemoveParcelsRequest extends AddParcelsRequest {}
+    export interface RemoveParcelsRequest extends AddParcelsRequest {}
 
-    interface RemoveParcelsResponse extends AddParcelsResponse {}
+    export interface RemoveParcelsResponse extends AddParcelsResponse {}
 }
 
-declare module Tracing2Port {
-    interface OrderStatesResponse {
+export namespace Tracing2Port {
+    export interface OrderStatesResponse {
         docId:number;
         docDate:string;
         clientNumber:number;
@@ -433,31 +431,31 @@ declare module Tracing2Port {
      * Operation GetStatesByClientOrder
      */
 
-    interface GetStatesByClientOrderRequest {
+    export interface GetStatesByClientOrderRequest {
         clientOrderNr:string;
         pickupDate?:string;
     }
 
-    interface GetStatesByClientOrderResponse extends OrderStatesResponse {}
+    export interface GetStatesByClientOrderResponse extends OrderStatesResponse {}
 
     /**
      * Operation GetStatesByClientParcel
      */
 
-    interface GetStatesByClientParcelRequest {
+    export interface GetStatesByClientParcelRequest {
         clientParcelNr:string;
         pickupDate?:string;
     }
-    interface GetStatesByClientParcelResponse extends OrderStatesResponse {}
+    export interface GetStatesByClientParcelResponse extends OrderStatesResponse {}
 
     /**
      * Operation GetStatesByDPDOrder
      */
 
-    interface GetStatesByDPDOrderRequest {
+    export interface GetStatesByDPDOrderRequest {
         dpdOrderNr:string;
         pickupYear?:number;
     }
 
-    interface GetStatesByDPDOrderResponse extends OrderStatesResponse {}
+    export interface GetStatesByDPDOrderResponse extends OrderStatesResponse {}
 }
