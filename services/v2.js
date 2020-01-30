@@ -122,21 +122,21 @@ class Tracing2 extends service_1.Service {
      * @returns {Promise<Tracing2Port.GetStatesByClientOrderResponse>}
      */
     getStatesByClientOrder(parameters) {
-        return this.call('getStatesByClientOrder', parameters);
+        return this.call('getStatesByClientOrder', parameters, 'request');
     }
     /**
      * @param parameters {Tracing2Port.GetStatesByClientParcelRequest}
      * @returns {Promise<Tracing2Port.GetStatesByClientParcelResponse>}
      */
     getStatesByClientParcel(parameters) {
-        return this.call('getStatesByClientParcel', parameters);
+        return this.call('getStatesByClientParcel', parameters, 'request');
     }
     /**
      * @param parameters {Tracing2Port.GetStatesByDPDOrderRequest}
      * @returns {Promise<Tracing2Port.GetStatesByDPDOrderResponse>}
      */
     getStatesByDPDOrder(parameters) {
-        return this.call('getStatesByDPDOrder', parameters);
+        return this.call('getStatesByDPDOrder', parameters, 'request');
     }
 }
 exports.Tracing2 = Tracing2;
