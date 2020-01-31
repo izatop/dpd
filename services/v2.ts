@@ -139,7 +139,7 @@ export class Tracing2 extends Service {
      * @returns {Promise<Tracing2Port.GetStatesByClientOrderResponse>}
      */
     getStatesByClientOrder(parameters:Tracing2Port.GetStatesByClientOrderRequest):Promise<Tracing2Port.GetStatesByClientOrderResponse> {
-        return this.call('getStatesByClientOrder', parameters);
+        return this.call('getStatesByClientOrder', parameters, 'request');
     }
 
     /**
@@ -147,7 +147,7 @@ export class Tracing2 extends Service {
      * @returns {Promise<Tracing2Port.GetStatesByClientParcelResponse>}
      */
     getStatesByClientParcel(parameters:Tracing2Port.GetStatesByClientParcelRequest):Promise<Tracing2Port.GetStatesByClientParcelResponse> {
-        return this.call('getStatesByClientParcel', parameters);
+        return this.call('getStatesByClientParcel', parameters, 'request');
     }
 
     /**
@@ -155,7 +155,7 @@ export class Tracing2 extends Service {
      * @returns {Promise<Tracing2Port.GetStatesByDPDOrderResponse>}
      */
     getStatesByDPDOrder(parameters:Tracing2Port.GetStatesByDPDOrderRequest):Promise<Tracing2Port.GetStatesByDPDOrderResponse> {
-        return this.call('getStatesByDPDOrder', parameters);
+        return this.call('getStatesByDPDOrder', parameters,'request');
     }
 }
 
