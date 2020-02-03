@@ -1,7 +1,8 @@
 'use strict';
-const soap = require('soap');
-const util = require('util');
-const o2xml_1 = require('o2xml');
+Object.defineProperty(exports, "__esModule", { value: true });
+const soap = require("soap");
+const util = require("util");
+const o2xml_1 = require("o2xml");
 class Service {
     constructor(context) {
         this.context = context;

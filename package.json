@@ -1,30 +1,32 @@
 {
-  "name": "dpd",
-  "version": "0.3.0-beta",
-  "description": "DPD API for Node.js",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/izatop/dpd.git"
-  },
-  "keywords": [
-    "dpd",
-    "api"
-  ],
-  "author": "izatop@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/izatop/dpd/issues"
-  },
-  "homepage": "https://github.com/izatop/dpd#readme",
-  "dependencies": {
-    "@types/node": "^6.0.51",
-    "o2xml": "^0.1.4",
-    "soap": "^0.13.0",
-    "typescript": "^2.0.8"
-  },
-  "devDependencies": {
-    "source-map-support": "^0.4.6",
-    "typescript": "^2.0.10"
-  }
+    "name": "dpd",
+    "version": "0.3.0-beta",
+    "description": "DPD API for Node.js",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/izatop/dpd.git"
+    },
+    "keywords": [
+        "dpd",
+        "api"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "author": "izatop@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/izatop/dpd/issues"
+    },
+    "homepage": "https://github.com/izatop/dpd#readme",
+    "dependencies": {
+        "@types/node": "^6.0.51",
+        "o2xml": "^0.1.4",
+        "soap": "^0.13.0"
+    },
+    "devDependencies": {
+        "source-map-support": "^0.4.6",
+        "typescript": "^2.0.10"
+    }
 }

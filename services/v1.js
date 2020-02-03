@@ -1,5 +1,6 @@
 'use strict';
-const service_1 = require('./service');
+Object.defineProperty(exports, "__esModule", { value: true });
+const service_1 = require("./service");
 const datastore_1 = require("./datastore");
 /**
  * Geography Service

@@ -13,6 +13,6 @@ export declare class Service {
      * @returns {Promise<T>}
      */
     call<T>(method: string, parameters?: any, ns?: string): Promise<T>;
-    private fixParameters(value);
-    private send(options, resolve, reject);
+    private fixParameters;
+    private send;
 }

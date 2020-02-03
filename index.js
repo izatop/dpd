@@ -1,7 +1,8 @@
 "use strict";
-const assert_1 = require('assert');
-const V1 = require('./services/v1');
-const V2 = require('./services/v2');
+Object.defineProperty(exports, "__esModule", { value: true });
+const assert_1 = require("assert");
+const V1 = require("./services/v1");
+const V2 = require("./services/v2");
 const path_1 = require("path");
 class Credentials {
     constructor(client, key) {

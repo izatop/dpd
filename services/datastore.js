@@ -1,6 +1,7 @@
 "use strict";
-const stream_1 = require('stream');
-const fs_1 = require('fs');
+Object.defineProperty(exports, "__esModule", { value: true });
+const stream_1 = require("stream");
+const fs_1 = require("fs");
 class DataStreamTransform extends stream_1.Transform {
     constructor(header) {
         super({ objectMode: true });

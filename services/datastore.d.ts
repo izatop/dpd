@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Transform } from 'stream';
 export interface ArrayObject {
     [key: string]: string;

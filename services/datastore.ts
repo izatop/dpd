@@ -39,5 +39,5 @@ export class DataStreamTransform<T> extends Transform {
 export const createDataStream = <T>(file, header): DataStreamTransform<T> => {
     let readableStream = createReadStream(file, {encoding: 'UTF-8'}),
         dataStreamTransform = new DataStreamTransform(header);
-    return readableStream.pipe(dataStreamTransform);
+    return readableStream.pipe(dataStreamTransform as any);
 };
