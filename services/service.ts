@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-import * as soap from 'soap';
-import * as util from 'util';
-import {transform} from 'o2xml';
+import {transform} from "o2xml";
+import * as soap from "soap";
+import * as util from "util";
 import {DPD} from "../index";
 
 export class Service {
-    namespace:string;
+    namespace: string;
 
     context: DPD;
-    client:any;
+    client: any;
 
     constructor(context: DPD) {
         this.context = context;
@@ -23,7 +23,7 @@ export class Service {
      * @param ns            Method's envelope namespace which includes parameters.
      * @returns {Promise<T>}
      */
-    call<T>(method:string, parameters?:any, ns?:string):Promise<T> {
+    call<T>(method: string, parameters?: any, ns?: string): Promise<T> {
         return new Promise((resolve, reject) => {
             if (!parameters) {
                 parameters = {};
@@ -32,12 +32,12 @@ export class Service {
             let envelope = {
                     auth: {
                         clientNumber: this.context.credentials.client,
-                        clientKey: this.context.credentials.key
-                    }
+                        clientKey: this.context.credentials.key,
+                    },
                 },
                 options = {
                     method: method,
-                    params: {}
+                    params: {},
                 };
 
             Object.keys(parameters).forEach(function (key) {
@@ -56,8 +56,8 @@ export class Service {
                 let WSDLOptions = {
                     ignoredNamespaces: {
                         override: true,
-                        namespaces: [ 'targetNamespace', 'typedNamespace' ]
-                    }
+                        namespaces: ["targetNamespace", "typedNamespace"],
+                    },
                 };
 
                 soap.createClient(`http://${this.context.hostname}/services/${this.namespace}?wsdl`, WSDLOptions, (error, client) => {
@@ -72,18 +72,18 @@ export class Service {
         });
     }
 
-    private fixParameters(value:any) {
+    private fixParameters(value: any) {
         if (util.isArray(value)) {
             return value.map(x => this.fixParameters(x));
-        } else if (typeof value == 'object') {
+        } else if (typeof value == "object") {
             let converted = {};
-            Object.keys(value).forEach(x => converted[x.indexOf('$') === 0 ? x : ':' + x] = this.fixParameters(value[x]));
+            Object.keys(value).forEach(x => converted[x.indexOf("$") === 0 ? x : ":" + x] = this.fixParameters(value[x]));
             return converted;
         }
 
         return value;
     }
-    
+
     private send(options, resolve, reject) {
         this.client[options.method]({$xml: transform(options.params)}, (error, result) => {
             if (error) {

@@ -1,6 +1,6 @@
 {
     "name": "dpd",
-    "version": "0.3.0-beta",
+    "version": "0.3.1-beta",
     "description": "DPD API for Node.js",
     "main": "index.js",
     "repository": {
@@ -23,7 +23,7 @@
     "dependencies": {
         "@types/node": "^6.0.51",
         "o2xml": "^0.1.4",
-        "soap": "^0.13.0"
+        "soap": "^0.30.0"
     },
     "devDependencies": {
         "source-map-support": "^0.4.6",

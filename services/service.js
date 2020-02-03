@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const o2xml_1 = require("o2xml");
 const soap = require("soap");
 const util = require("util");
-const o2xml_1 = require("o2xml");
 class Service {
     constructor(context) {
         this.context = context;
@@ -23,11 +23,11 @@ class Service {
             let envelope = {
                 auth: {
                     clientNumber: this.context.credentials.client,
-                    clientKey: this.context.credentials.key
-                }
+                    clientKey: this.context.credentials.key,
+                },
             }, options = {
                 method: method,
-                params: {}
+                params: {},
             };
             Object.keys(parameters).forEach(function (key) {
                 envelope[key] = parameters[key];
@@ -45,8 +45,8 @@ class Service {
                 let WSDLOptions = {
                     ignoredNamespaces: {
                         override: true,
-                        namespaces: ['targetNamespace', 'typedNamespace']
-                    }
+                        namespaces: ["targetNamespace", "typedNamespace"],
+                    },
                 };
                 soap.createClient(`http://${this.context.hostname}/services/${this.namespace}?wsdl`, WSDLOptions, (error, client) => {
                     if (error) {
@@ -64,9 +64,9 @@ class Service {
         if (util.isArray(value)) {
             return value.map(x => this.fixParameters(x));
         }
-        else if (typeof value == 'object') {
+        else if (typeof value == "object") {
             let converted = {};
-            Object.keys(value).forEach(x => converted[x.indexOf('$') === 0 ? x : ':' + x] = this.fixParameters(value[x]));
+            Object.keys(value).forEach(x => converted[x.indexOf("$") === 0 ? x : ":" + x] = this.fixParameters(value[x]));
             return converted;
         }
         return value;
